@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日期对象</title>
+</head>
+<body>
+    <div >
+        <span></span>天<span></span>时<span></span>分<span></span>秒
+    </div>
+</body>
+</html>
+<script>
+//    let date = new Date(2017,10,20,10,30,30);月份+1
+/*    let date = new Date('12/20/2017 14:00:00');
+    date.getMonth();// 设置-1，获取+1
+    date.getDate();//号
+    date.getDay();//星期
+    date.getFullYear();//年
+    date.getTime();//返回距 1970 年 1 月 1 日之间的毫秒数
+    console.dir(date);*/
+
+let spans = document.querySelectorAll('div>span');
+//let date = new Date(2017,11,25,12,0,0);
+//move();
+//setInterval(move,1000);
+
+//倒计时
+
+djs(10);
+function djs(num) {
+    date = new Date();
+    date.setMinutes(date.getMinutes()+num);
+    move();
+    setInterval(move,1000);
+}
+
+function move() {
+    let arr = [];
+    let now = new Date();
+    let time = Math.floor((date.getTime()-now.getTime())/1000);
+
+/*    let day = Math.floor(time/60/60/24);
+    arr.push(day);
+    let shi =( time %(60*60*24));
+    let hours = Math.floor(shi/60/60);
+    arr.push(hours);*/
+    let fen = (time %(60*60));
+    let minute = Math.floor((fen/60)); // 10.65
+    arr.push(minute);
+    let second = Math.floor(fen%60);
+    arr.push(second);
+
+    spans.forEach((element,index)=>{
+        element.innerText=arr[index];
+    })
+}
+
+
+</script>
